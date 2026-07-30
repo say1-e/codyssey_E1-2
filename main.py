@@ -14,10 +14,31 @@ class QuizGame : # class = 설계도
         print("5. 종료")
         print ("=" * 40)
 
+    def run(self):
+        while True:
+            self.show_menu()
+
+            choice = input("선택: ").strip() # .strip() = 문자열 및 공백 제거
+
+            if choice == "1":
+                print("퀴즈 풀기를 선택했습니다.")
+            elif choice == "2":
+                print("퀴즈 추가를 선택했습니다.")
+            elif choice == "3":
+                print("퀴즈 목록을 선택했습니다.")
+            elif choice == "4":
+                print("점수 확인을 선택했습니다.")
+            elif choice == "5":
+                print("게임을 종료합니다.")
+                break
+
+            else:
+                print("잘못된 입력입니다.")
+
 
 def main():
     game = QuizGame() # 클래스라는 설계도로 객체 생성
-    game.show_menu()
+    game.run()
 
 """
 __name__ : 파이썬 실행 시 현재 모듈(파이썬 파일)의 이름을 자동으로 담아주는 내장 변수
