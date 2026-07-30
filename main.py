@@ -14,21 +14,47 @@ class QuizGame : # class = 설계도
         print("5. 종료")
         print ("=" * 40)
 
+    def get_number_input(self, message, min_value, max_value):
+        while True:
+            user_input = input(message).strip() # .strip() = 문자열의 양 끝에 있는 공백, 지정한 문자 제거 메소드
+
+            if user_input == "":
+                print("값을 입력해주세요.")
+                continue
+
+            """
+            try - except 구문
+                try = 오류날 수 있는 코드 실행
+                except [에러] = 특정 에러 발생 시 실행
+                continue = 현재 반복 중단 후 while 처음으로 돌아감 
+            """
+            try:
+                number = int(user_input)
+            except ValueError: 
+                print("숫자를 입력해주세요.")
+                continue
+
+            if number < min_value or number > max_value:
+                print(f"{min_value}~{max_value} 사이의 숫자를 입력해주세요.")
+                continue
+
+            return number
+
     def run(self):
         while True:
             self.show_menu()
 
-            choice = input("선택: ").strip() # .strip() = 문자열 및 공백 제거
+            choice = self.get_number_input("선택: ", 1, 5)
 
-            if choice == "1":
+            if choice == 1:
                 print("퀴즈 풀기를 선택했습니다.")
-            elif choice == "2":
+            elif choice == 2:
                 print("퀴즈 추가를 선택했습니다.")
-            elif choice == "3":
+            elif choice == 3:
                 print("퀴즈 목록을 선택했습니다.")
-            elif choice == "4":
+            elif choice == 4:
                 print("점수 확인을 선택했습니다.")
-            elif choice == "5":
+            elif choice == 5:
                 print("게임을 종료합니다.")
                 break
 
