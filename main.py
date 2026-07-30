@@ -4,6 +4,15 @@ class Quiz :
         self.choices = choices
         self.answer = answer
 
+    def display(self):
+        print(self.question)
+
+        for index, choice in enumerate(self.choices, start=1): # enumerate() 리스트 같은 순서 있는 자료형을 받아 인덱스와 값을 도잇에 함께 튜플 형태로 리턴해주는 내장 함수
+            print(f"{index}. {choice}")
+
+    def check_answer(self, user_answer):
+        return self.answer == user_answer
+
 class QuizGame : # class = 설계도
     def __init__(self) : # 생성자 - 객체 생성 시 자동 실행 메서드 / self라는 변수에 현재 객체 자기 자신에 대한 참조가 들어옴
         self.quizzes = []
