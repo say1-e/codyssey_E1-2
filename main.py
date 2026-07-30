@@ -68,7 +68,7 @@ class QuizGame : # class = 설계도
             elif choice == 2:
                 self.add_quiz()
             elif choice == 3:
-                print("퀴즈 목록을 선택했습니다.")
+                self.show_quizzes()
             elif choice == 4:
                 print("점수 확인을 선택했습니다.")
             elif choice == 5:
@@ -168,6 +168,21 @@ class QuizGame : # class = 설계도
         self.quizzes.append(new_quiz)
 
         print("퀴즈가 추가되었습니다.")
+
+    def show_quizzes(self):
+        print()
+
+        if not self.quizzes:
+            print("등록된 퀴즈가 없습니다.")
+            return
+
+        print(f"등록된 퀴즈 목록 (총 {len(self.quizzes)}개)")
+        print("-" * 40)
+
+        for index, quiz in enumerate(self.quizzes, start=1):
+            print(f"[{index}] {quiz.question}")
+
+        print("-" * 40)
 
 
 
