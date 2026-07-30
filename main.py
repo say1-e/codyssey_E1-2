@@ -1,3 +1,9 @@
+class QuizGame : # class = 설계도
+    def __init__(self) : # 생성자 - 객체 생성 시 자동 실행 메서드
+        self.quizzes = []
+        self.best_score =0
+
+
 def show_menu() :
     print ("=" * 40)
     print("🎯 나만의 퀴즈 게임 🎯")
@@ -9,6 +15,8 @@ def show_menu() :
     print("5. 종료")
 
 def main():
+    game = QuizGame() # 클래스라는 설계도로 객체 생성
+    print("퀴즈 게임 객체 생성")
     show_menu()
 
 """
