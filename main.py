@@ -1,3 +1,9 @@
+class Quiz : 
+    def __init__(self, question, choices, answer):
+        self.question = question
+        self.choices = choices
+        self.answer = answer
+
 class QuizGame : # class = 설계도
     def __init__(self) : # 생성자 - 객체 생성 시 자동 실행 메서드 / self라는 변수에 현재 객체 자기 자신에 대한 참조가 들어옴
         self.quizzes = []
