@@ -13,6 +13,8 @@ class Quiz :
     def check_answer(self, user_answer):
         return self.answer == user_answer
 
+    
+
 class QuizGame : # class = 설계도
     def __init__(self) : # 생성자 - 객체 생성 시 자동 실행 메서드 / self라는 변수에 현재 객체 자기 자신에 대한 참조가 들어옴
         self.quizzes = self.create_default_quizzes()
@@ -62,7 +64,7 @@ class QuizGame : # class = 설계도
             choice = self.get_number_input("선택: ", 1, 5)
 
             if choice == 1:
-                print("퀴즈 풀기를 선택했습니다.")
+                self.play_quiz()
             elif choice == 2:
                 print("퀴즈 추가를 선택했습니다.")
             elif choice == 3:
@@ -104,6 +106,40 @@ class QuizGame : # class = 설계도
                 4
             ),
         ]
+
+    def play_quiz(self):
+        if not self.quizzes:
+            print("등록된 퀴즈가 없습니다.")
+            return
+
+        correct_count = 0
+
+        print()
+        print(f"퀴즈를 시작합니다! 총 {len(self.quizzes)}문제")
+
+        for index, quiz in enumerate(self.quizzes, start=1):
+            print()
+            print("-" * 40)
+            print(f"[문제 {index}]")
+
+            quiz.display()
+
+            user_answer = self.get_number_input("정답 입력: ", 1, 4)
+
+            if quiz.check_answer(user_answer):
+                print("정답입니다!")
+                correct_count += 1
+            else :
+                print(f"오답입니다. 정답은 {quiz.answer}번입니다.")
+
+        print()
+        print("=" * 40)
+        print(
+            f"결과: {len(self.quizzes)}문제 중 "
+            f"{correct_count}문제 정답"
+        )
+        print("=" * 40)
+
 
 
 def main():
