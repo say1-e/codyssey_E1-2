@@ -18,7 +18,7 @@ class Quiz :
 class QuizGame : # class = 설계도
     def __init__(self) : # 생성자 - 객체 생성 시 자동 실행 메서드 / self라는 변수에 현재 객체 자기 자신에 대한 참조가 들어옴
         self.quizzes = self.create_default_quizzes()
-        self.best_score =0
+        self.best_score = None # 처음엔 0으로 작업했으나, 점수 조회 시 게임을 아예 안한 케이스까지 설계할 필요를 느껴 None으로 수정 (파이썬엔 null 개념 없음)
 
     def show_menu(self) : # 일반 함수 - 객체의 행동
         print ("=" * 40)
@@ -70,7 +70,7 @@ class QuizGame : # class = 설계도
             elif choice == 3:
                 self.show_quizzes()
             elif choice == 4:
-                print("점수 확인을 선택했습니다.")
+                self.show_score()
             elif choice == 5:
                 print("게임을 종료합니다.")
                 break
@@ -133,11 +133,23 @@ class QuizGame : # class = 설계도
                 print(f"오답입니다. 정답은 {quiz.answer}번입니다.")
 
         print()
-        print("=" * 40)
         print(
             f"결과: {len(self.quizzes)}문제 중 "
             f"{correct_count}문제 정답"
         )
+
+        score = correct_count * 100 // len(self.quizzes)
+
+        print("=" * 40)
+        print(
+            f"결과: {len(self.quizzes)}문제 중"
+            f"{correct_count}문제 정답 ({score}점)"
+        )
+
+        if self.best_score is None or score > self.best_score:
+            self.best_score = score
+            print("새로운 최고 점수입니다!")
+
         print("=" * 40)
 
     def add_quiz(self):
@@ -183,6 +195,13 @@ class QuizGame : # class = 설계도
             print(f"[{index}] {quiz.question}")
 
         print("-" * 40)
+
+    def show_score(self):
+        if self.best_score is None:
+            print("아직 기록된 최고 점수가 없습니다.")
+            return
+
+        print(f"최고 점수 : {self.best_score}점")
 
 
 
