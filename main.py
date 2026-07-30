@@ -13,6 +13,13 @@ class Quiz :
     def check_answer(self, user_answer):
         return self.answer == user_answer
 
+    def to_dict(self):
+        return {
+            "question" : self.question,
+            "choices" : self.choices,
+            "answer" : self.answer,
+        }
+
     
 
 class QuizGame : # class = 설계도
