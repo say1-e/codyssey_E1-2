@@ -66,7 +66,7 @@ class QuizGame : # class = 설계도
             if choice == 1:
                 self.play_quiz()
             elif choice == 2:
-                print("퀴즈 추가를 선택했습니다.")
+                self.add_quiz()
             elif choice == 3:
                 print("퀴즈 목록을 선택했습니다.")
             elif choice == 4:
@@ -139,6 +139,35 @@ class QuizGame : # class = 설계도
             f"{correct_count}문제 정답"
         )
         print("=" * 40)
+
+    def add_quiz(self):
+        print()
+        print("새로운 퀴즈를 추가합니다.")
+
+        question = input("문제를 입력하세요.: ").strip()
+
+        while question == "":
+            print("문제를 비워둘 수 없습니다.")
+            question = input("문제를 입력하세요.: ").strip()
+
+        choices = []
+
+        for number in range(1, 5):
+            choice = input(f"선택지 {number}: ").strip()
+
+            while choice == "":
+                print("선택지를 비워둘 수 없습니다.")
+                choice = input(f"선택지 {number}: ").strip()
+
+            choices.append(choice)
+
+        answer = self.get_number_input("정답 번호 (1~4): ", 1, 4)
+
+        new_quiz = Quiz(question, choices, answer)
+
+        self.quizzes.append(new_quiz)
+
+        print("퀴즈가 추가되었습니다.")
 
 
 
