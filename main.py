@@ -15,7 +15,7 @@ class Quiz :
 
 class QuizGame : # class = 설계도
     def __init__(self) : # 생성자 - 객체 생성 시 자동 실행 메서드 / self라는 변수에 현재 객체 자기 자신에 대한 참조가 들어옴
-        self.quizzes = []
+        self.quizzes = self.create_default_quizzes()
         self.best_score =0
 
     def show_menu(self) : # 일반 함수 - 객체의 행동
@@ -75,6 +75,35 @@ class QuizGame : # class = 설계도
 
             else:
                 print("잘못된 입력입니다.")
+
+    def create_default_quizzes(self):
+        return [
+            Quiz(
+                "Python에서 문자열을 나타내는 자료형은?",
+                ["int", "str", "bool", "list"],
+                2
+            ),
+            Quiz(
+                "Python에서 참과 거짓을 나타내는 자료형은?",
+                ["str", "dict", "bool", "float"],
+                3
+            ),
+            Quiz(
+                "리스트를 만들 때 사용하는 기호는?",
+                ["()", "{}", "[]", "<>"],
+                3
+            ),
+            Quiz(
+                "조건문을 작성할 때 사용하는 키워드는?",
+                ["if", "for", "def", "class"],
+                1
+            ),
+            Quiz(
+                "함수를 정의할 때 사용하는 키워드는?",
+                ["func", "function", "return", "def"],
+                4
+            ),
+        ]
 
 
 def main():
