@@ -1,3 +1,5 @@
+import json
+
 class Quiz : 
     def __init__(self, question, choices, answer):
         self.question = question
@@ -155,6 +157,7 @@ class QuizGame : # class = 설계도
 
         if self.best_score is None or score > self.best_score:
             self.best_score = score
+            self.save_state()
             print("새로운 최고 점수입니다!")
 
         print("=" * 40)
@@ -185,8 +188,10 @@ class QuizGame : # class = 설계도
         new_quiz = Quiz(question, choices, answer)
 
         self.quizzes.append(new_quiz)
+        self.save_state()
 
         print("퀴즈가 추가되었습니다.")
+
 
     def show_quizzes(self):
         print()
@@ -209,6 +214,26 @@ class QuizGame : # class = 설계도
             return
 
         print(f"최고 점수 : {self.best_score}점")
+
+    def save_state(self):
+        data = {
+            "quizzes" : [
+                quiz.to_dict()
+                for quiz in self.quizzes
+            ],
+            "best_score" : self.best_score
+        }
+
+        try:
+            with open("state.json", "w", encoding="utf-8") as file:
+                json.dump(
+                    data,
+                    file,
+                    ensure_ascii=False,
+                    indent=4
+                )
+        except OSError:
+            print("데이터를 저장하는 중 오류가 발생했습니다.")
 
 
 
